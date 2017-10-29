@@ -69,7 +69,7 @@ FROM empresa AS emp
 	ON emp.Empresa = ecfd.Empresa
 WHERE emp.Empresa = 'PREST'
 
--- Factura 105845
++-- Factura 105845
 -- Datos de la factura
 SELECT 
 -- Datos del cliente
@@ -90,6 +90,46 @@ ON vta.Cliente = cte.cliente
 INNER JOIN Art
 on vtad.Articulo = art.Articulo
 WHERE Mov = 'Factura' AND FechaEmision BETWEEN '2014/01/01' AND '2014/31/01' AND MovID = '105845'
+
+-- Factura 105845
+-- Datos de la factura
+SELECT DISTINCT
+-- Datos del cliente
+	cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt,
+	cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos,
+	cte.Condicion, vta.Concepto, vta.observaciones/*,
+-- Datos de la factura
+	vta.mov, vta.MovID, vta.FechaEmision, vta.OrdenCompra, vta.FormaEnvio, vta.Atencion,
+	vta.Moneda, vta.TipoCambio, vta.Impuestos, vta.Importe, vta.Descuento, vta.DescuentoGlobal, vta.DescuentoLineal,
+	vta.ServicioGarantia, vta.Impuestos, vta.FormaPagoTipo, vta.Estatus, 
+-- Datos de movimientos
+	vtad.Articulo, art.Descripcion1, art.Descripcion2, vtad.Impuesto1, vtad.Unidad, vtad.Cantidad, vtad.Precio*/
+FROM Venta AS vta
+INNER JOIN  cte
+ON vta.Cliente = cte.cliente
+WHERE Mov = 'Factura' AND FechaEmision BETWEEN '2014/01/01' AND '2014/31/01' --AND MovID = '105845'
+
+
+-- Factura 105845
+-- Datos de la factura
+SELECT DISTINCT
+-- Datos del cliente
+	/*cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt,
+	cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos,
+	cte.Condicion, vta.Concepto, vta.observaciones,
+-- Datos de la factura
+	vta.mov, vta.MovID, vta.FechaEmision, vta.OrdenCompra, vta.FormaEnvio, vta.Atencion,
+	vta.Moneda, vta.TipoCambio, vta.Impuestos, vta.Importe, vta.Descuento, vta.DescuentoGlobal, vta.DescuentoLineal,
+	vta.ServicioGarantia, vta.Impuestos, vta.FormaPagoTipo, vta.Estatus, */
+-- Datos de movimientos
+	vtad.Articulo, art.Descripcion1, art.Descripcion2, vtad.Impuesto1, vtad.Unidad, vtad.Cantidad, vtad.Precio
+FROM Venta AS vta
+INNER JOIN VentaD AS vtad
+ON vta.ID = vtad.ID 
+INNER JOIN Art
+on vtad.Articulo = art.Articulo
+WHERE Mov = 'Factura' AND FechaEmision BETWEEN '2014/01/01' AND '2014/31/01' --AND MovID = '105845'
+
 
 
 -- Factura 105847
@@ -120,10 +160,10 @@ SELECT
 -- Datos del cliente
 	cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt,
 	cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos,
-	cte.Condicion, cxc.Concepto, cxc.observaciones,
+	cte.Condicion, cxc.Concepto, cxc.observaciones, 
 -- Datos de la factura
 	cxc.mov, cxc.MovID, cxc.FechaEmision, 
-	cxc.Moneda, cxc.Impuestos, cxc.Importe, 
+	cxc.Moneda, cxc.TipoCambio, cxc.Impuestos, cxc.Importe, 
 	cxc.Impuestos
 FROM cxc AS cxc
 INNER JOIN  cte
@@ -160,3 +200,14 @@ FROM cxc AS cxc
 INNER JOIN  cte
 ON cxc.Cliente = cte.cliente
 WHERE cxc.MovID = '10339' and cxc.mov = 'Nota Credito Dev'
+
+ SELECT cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt, cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos, cte.Condicion, vta.mov, vta.MovID, vta.FechaEmision, vta.OrdenCompra, vta.FormaEnvio, vta.Atencion, vta.Moneda, vta.Impuestos, vta.Importe, vta.Descuento, vta.DescuentoGlobal, vta.DescuentoLineal, vta.ServicioGarantia, vta.Impuestos, vta.FormaPagoTipo, vta.Estatus, vtad.Articulo , art.Descripcion1, art.Descripcion2, vtad.Impuesto1, vtad.Unidad, vtad.Cantidad, vtad.Precio FROM Venta AS vta INNER JOIN VentaD AS vtad ON vta.ID = vtad.ID INNER JOIN  cte ON vta.Cliente = cte.cliente INNER JOIN Art on vtad.Articulo = art.Articulo WHERE Mov = 'Factura' AND FechaEmision BETWEEN '{FechaIni}' AND '{FechaIni}'
+  SELECT   cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt,  cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos,  cte.Condicion, cxc.Concepto, cxc.observaciones,  cxc.mov, cxc.MovID, cxc.FechaEmision,   cxc.Moneda, cxc.Impuestos, cxc.Importe,   cxc.Impuestos FROM cxc AS cxc INNER JOIN  cte ON cxc.Cliente = cte.cliente WHERE cxc.mov = 'Factura Anticipo' AND FechaEmision BETWEEN '04/07/2017' AND '04/07/2017'
+
+
+   SELECT cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt, cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos, cte.Condicion, vta.mov, vta.MovID, vta.FechaEmision, vta.OrdenCompra, vta.FormaEnvio, vta.Atencion, vta.Moneda, vta.Impuestos, vta.Importe, vta.Descuento, vta.DescuentoGlobal, vta.DescuentoLineal, vta.ServicioGarantia, vta.Impuestos, vta.FormaPagoTipo, vta.Estatus, vtad.Articulo , art.Descripcion1, art.Descripcion2, vtad.Impuesto1, vtad.Unidad, vtad.Cantidad, vtad.Precio FROM Venta AS vta INNER JOIN VentaD AS vtad ON vta.ID = vtad.ID INNER JOIN  cte ON vta.Cliente = cte.cliente INNER JOIN Art on vtad.Articulo = art.Articulo WHERE Mov = 'Factura' AND FechaEmision BETWEEN '18/08/2017' AND '31/07/2017'
+
+
+    SELECT   cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt,  cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos,  cte.Condicion, cxc.Concepto, cxc.observaciones,  cxc.mov, cxc.MovID, cxc.FechaEmision,   cxc.Moneda, cxc.Impuestos, cxc.Importe,   cxc.Impuestos FROM cxc AS cxc INNER JOIN  cte ON cxc.Cliente = cte.cliente WHERE cxc.mov = 'Factura Anticipo' AND FechaEmision BETWEEN '2017/18/08' AND '2017/18/08'
+
+	 SELECT   cte.Cliente, cte.RFC, cte.Nombre, cte.Direccion, cte.DireccionNumero, cte.DireccionNumeroInt,  cte.Colonia, cte.Poblacion, cte.Estado, cte.Pais, cte.CodigoPostal, cte.Telefonos,  cte.Condicion, cxc.Concepto, cxc.observaciones,  cxc.mov, cxc.MovID, cxc.FechaEmision,   cxc.Moneda, cxc.Impuestos, cxc.Importe,  FROM cxc AS cxc INNER JOIN  cte ON cxc.Cliente = cte.cliente WHERE cxc.mov = 'Nota Credito Dev' AND FechaEmision BETWEEN '2017/01/08' AND '2017/31/10'

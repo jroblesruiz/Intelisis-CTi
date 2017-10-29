@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tasks>
+  <Task>
+    <Description>Agregar un botón para validar la conexión</Description>
+    <Status>Deferred</Status>
+    <Priority>Normal</Priority>
+    <AssignedTo />
+    <Comment />
+  </Task>
+  <Task>
+    <Description>Cambiar la selección de empresas por la de AdminPAQ</Description>
+    <Status>NotStarted</Status>
+    <Priority>Normal</Priority>
+    <AssignedTo />
+    <Comment />
+  </Task>
+  <Task>
+    <Description>Refactorizar parámetros en los querys</Description>
+    <Status>NotStarted</Status>
+    <Priority>Normal</Priority>
+    <AssignedTo />
+    <Comment />
+  </Task>
+</Tasks>
